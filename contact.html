@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Contact – Goobie Woobie Inc</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+<header class="header">
+  <nav class="navbar container">
+    <a href="index.html" class="logo">Goobie Woobie Inc</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="companies.html">Companies</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <main class="container">
+    <h2>Contact Us</h2>
+    <form action="mailto:info@goobiewoobie.com" method="post" enctype="text/plain">
+      <label>Name:<input type="text" name="name" required></label>
+      <label>Email:<input type="email" name="email" required></label>
+      <label>Subject:<input type="text" name="subject" required></label>
+      <label>Message:<textarea name="message" rows="6" required></textarea></label>
+      <button type="submit">Send Message</button>
+    </form>
+    <p>Or email us directly at <a href="mailto:info@goobiewoobie.com">info@goobiewoobie.com</a>.</p>
+  </main>
+  
+<footer class="footer">
+  <p>© 2025 Goobie Woobie Inc. All rights reserved.</p>
+</footer>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('page-loaded');
+  });
+  window.addEventListener('beforeunload', () => {
+    document.body.classList.add('page-unloading');
+  });
+</script>
+
+</body>
+</html>
