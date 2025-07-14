@@ -26,6 +26,14 @@ body {
 .nav-links a {
     text-decoration: none;
     color: #0d6efd;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+.nav-links a:hover,
+.nav-links a:focus {
+    color: white;
+    background-color: #0d6efd;
+    padding: 4px 8px;
+    border-radius: 4px;
 }
 .logo {
     font-size: 24px;
@@ -49,10 +57,21 @@ body {
     border: 1px solid #0d6efd;
     border-radius: 5px;
     color: #0d6efd;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+.btn:hover {
+    background-color: #0d6efd;
+    color: #fff;
+    transform: translateY(-2px);
 }
 .btn-primary {
     background-color: #0d6efd;
     color: white;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-2px);
 }
 .container {
     width: 90%;
@@ -77,13 +96,11 @@ body {
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
-/* ← New image-scaling rules for logos: */
+/* Logo images: downscale without breaking layout */
 .company-card img {
-    /* never exceed card width */
     max-width: 100%;
-    /* keep original aspect ratio */
     height: auto;
-    /* optional: to cap at a uniform size, uncomment below:
+    /* optional pixel cap:
     max-width: 200px;
     */
 }
@@ -112,6 +129,7 @@ form input, form textarea {
     margin-bottom: 15px;
     border: 1px solid #ced4da;
     border-radius: 4px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 form input:focus,
 form textarea:focus {
@@ -130,46 +148,75 @@ form button {
 
 /* Page Transitions */
 body {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 body.page-loaded {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 body.page-unloading {
-  opacity: 0;
-  transform: translateY(-10px);
+    opacity: 0;
+    transform: translateY(-10px);
 }
 
 /* Smooth scroll */
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
-/* Nav hover */
-.nav-links a {
-  transition: color 0.3s ease, background-color 0.3s ease;
-}
-.nav-links a:hover,
-.nav-links a:focus {
-  color: white;
-  background-color: #0d6efd;
-  padding: 4px 8px;
-  border-radius: 4px;
+/* ========== Responsive & Fluid Text (added at bottom) ========== */
+
+/* 1. Fluid (clamped) typography so text scales smoothly */
+html {
+    /* minimum 14px, ideal 2.5vw, maximum 18px */
+    font-size: clamp(14px, 2.5vw, 18px);
+    line-height: 1.5;
 }
 
-/* Buttons */
-.btn, .btn-primary {
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+/* 2. Ensure paragraphs and headings wrap cleanly */
+.company-card h3,
+.company-card p,
+body p,
+h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+    hyphens: auto;
 }
-.btn:hover {
-  background-color: #0d6efd;
-  color: #fff;
-  transform: translateY(-2px);
+
+/* 3. Mobile: single-column layout */
+@media (max-width: 600px) {
+    .company-list {
+        grid-template-columns: 1fr;
+    }
+    .container {
+        margin: 20px auto;
+        width: 95%;
+    }
+    .company-card {
+        padding: 15px;
+    }
+    .company-card h3 {
+        font-size: 1.1rem;
+    }
+    .company-card p {
+        font-size: 0.95rem;
+    }
 }
-.btn-primary:hover {
-  background-color: #0b5ed7;
-  transform: translateY(-2px);
+
+/* 4. Tablet (iPad): two-column layout */
+@media (min-width: 601px) and (max-width: 900px) {
+    .company-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .company-card {
+        padding: 20px;
+    }
+}
+
+/* 5. Desktop (wide): extra padding */
+@media (min-width: 901px) {
+    .company-card {
+        padding: 25px;
+    }
 }
