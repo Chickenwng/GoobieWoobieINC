@@ -24,12 +24,12 @@
 
   <main class="container">
     <h2>Contact Us</h2>
-    <form action="mailto:GoobieWoobieINC@usa.com" method="post" enctype="text/plain">
+    <form id="contact-form" action="mailto:GoobieWoobieINC@usa.com" method="post" enctype="text/plain">
       <label>Name:<input type="text" name="name" required></label>
       <label>Email:<input type="email" name="email" required></label>
       <label>Subject:<input type="text" name="subject" required></label>
       <label>Message:<textarea name="message" rows="6" required></textarea></label>
-      <button type="submit">Send Message</button>
+      <button type="submit" id="support-button">Send Message</button>
     </form>
     <p>Or email us directly at <a href="mailto:GoobieWoobieINC@usa.com">GoobieWoobieINC@usa.com</a>.</p>
   </main>
@@ -42,6 +42,17 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('page-loaded');
+    
+    // Handle support button click to redirect to help URL
+    const supportButton = document.getElementById('support-button');
+    const contactForm = document.getElementById('contact-form');
+    
+    if (supportButton && contactForm) {
+      contactForm.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent default form submission
+        window.location.href = 'https://help.goobiewoobieinc.wan64.de/open.php';
+      });
+    }
   });
   window.addEventListener('beforeunload', () => {
     document.body.classList.add('page-unloading');
